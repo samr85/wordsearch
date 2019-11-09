@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{311e5ebf-dca5-48ed-ab29-81c2b77e8019}</ProjectGuid>
+    <ProjectHome />
+    <StartupFile>manage.py</StartupFile>
+    <SearchPath />
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <ProjectTypeGuids>{5F0BE9CA-D677-4A4D-8806-6076C0FAAD37};{349c5851-65df-11da-9384-00065b846f21};{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
+    <LaunchProvider>Django launcher</LaunchProvider>
+    <InterpreterId>
+    </InterpreterId>
+    <WebBrowserUrl>http://localhost</WebBrowserUrl>
+    <DjangoSettingsModule>webserver.settings</DjangoSettingsModule>
+    <TestFramework>Pytest</TestFramework>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
+  <PropertyGroup>
+    <VisualStudioVersion Condition=" '$(VisualStudioVersion)' == '' ">10.0</VisualStudioVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="manage.py" />
+    <Compile Include="solverGui\admin.py" />
+    <Compile Include="solverGui\apps.py" />
+    <Compile Include="solverGui\migrations\__init__.py" />
+    <Compile Include="solverGui\models.py" />
+    <Compile Include="solverGui\tests.py" />
+    <Compile Include="solverGui\urls.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="solverGui\views.py" />
+    <Compile Include="solverGui\__init__.py" />
+    <Compile Include="solver\automaton.py" />
+    <Compile Include="solver\searcher.py" />
+    <Compile Include="solver\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="webserver\settings.py" />
+    <Compile Include="webserver\urls.py" />
+    <Compile Include="webserver\wsgi.py" />
+    <Compile Include="webserver\__init__.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="solverGui\static\solverGui\grid.css" />
+    <Content Include="solverGui\templates\solverGui\display.html" />
+    <Content Include="solverGui\static\solverGui\grid.js" />
+    <Content Include="solver\words.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="solver" />
+    <Folder Include="solverGui" />
+    <Folder Include="solverGui\migrations" />
+    <Folder Include="solverGui\static\" />
+    <Folder Include="solverGui\static\solverGui\" />
+    <Folder Include="solverGui\templates\" />
+    <Folder Include="solverGui\templates\solverGui\" />
+    <Folder Include="webserver" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.Django.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <AutoAssignPort>True</AutoAssignPort>
+          <UseCustomServer>True</UseCustomServer>
+          <CustomServerUrl>http://localhost</CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}" User="">
+        <WebProjectProperties>
+          <StartPageUrl>
+          </StartPageUrl>
+          <StartAction>CurrentPage</StartAction>
+          <AspNetDebugging>True</AspNetDebugging>
+          <SilverlightDebugging>False</SilverlightDebugging>
+          <NativeDebugging>False</NativeDebugging>
+          <SQLDebugging>False</SQLDebugging>
+          <ExternalProgram>
+          </ExternalProgram>
+          <StartExternalURL>
+          </StartExternalURL>
+          <StartCmdLineArguments>
+          </StartCmdLineArguments>
+          <StartWorkingDirectory>
+          </StartWorkingDirectory>
+          <EnableENC>False</EnableENC>
+          <AlwaysStartWebServerOnDebug>False</AlwaysStartWebServerOnDebug>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

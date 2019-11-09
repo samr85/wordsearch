@@ -1,0 +1,8 @@
+.vs
+obj
+*.user
+
+cache
+__pycache__
+
+*.sqlite3

@@ -1,0 +1,47 @@
+
+.holder {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 100%;
+}
+
+/*table.grid, .grid tr, .grid td {*/
+table.grid {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+.grid tr, .grid td {
+    height: 1.5em;
+    width: 1.5em;
+    text-align: center;
+    vertical-align: middle;
+    font-size: large;
+}
+
+.gridMatchHighlight {
+    background-color: aqua;
+}
+.gridMatchFound {
+    background-color: lightgrey;
+}
+.gridMatchNone {
+    background-color: white;
+}
+
+.wordList {
+    overflow-y: auto;
+    max-height: 100%;
+}
+.wordList table, .wordList tr, .wordList td {
+    border-collapse: collapse;
+}
+.wordList tr:nth-child(odd) {
+    background-color: whitesmoke;
+}
+
+.hover {
+    color: red;
+    background-color: lightgreen !important;
+}
+
