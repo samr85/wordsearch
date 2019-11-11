@@ -11,11 +11,16 @@ def detail(request, id):
     return HttpResponse("id: %s"%(id))
 
 def grid(request):
-    arrayIn = ["hello1",
-               "eeeee1",
-               'lllll1',
-               'lllll1',
-               'ooooo1']
+    arrayIn =['despoticskeetshoot',
+            'teacupozglommedorr',
+            'ieginbracingsailrs',
+            'coexinyortezorabll',
+            'windstifledowngate',
+            'napleshmaayugnolan',
+            'gnoowysumachfoxery',
+            'boinksgrouceneider',
+            'isfloplinxitsokerz',
+            'expliscovarquodern']
 
     displayGrid = []
     workGrid = []
