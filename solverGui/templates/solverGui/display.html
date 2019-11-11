@@ -34,7 +34,7 @@
         {%endfor%}
     }
     var gridHl = {
-        {%for row in grid%}{%for entry in row%}"{{forloop.parentloop.counter0}}_{{forloop.counter0}}":[[], []],
+        {%for row in grid%}{%for entry in row%}"{{forloop.counter0}}_{{forloop.parentloop.counter0}}":[[], []],
         {%endfor%}{%endfor%}
     }
 </script>
