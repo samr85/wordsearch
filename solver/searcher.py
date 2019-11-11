@@ -1,13 +1,8 @@
 from defaultlist import defaultlist
-import code
-import time
-import re
-import pickle
 
 from . import automaton
 
-Aut = automaton.getAutomaton()
-
+# This produces a list of rotations of the grid, called views
 def genViews(grid):
     arr = {}
     viewH = [''.join(x) for x in grid]
@@ -39,6 +34,8 @@ def genViews(grid):
     arr['dl-'] = [x[::-1] for x in viewDL]
     return arr
 
+# The class for passing through to display.html to contain the information
+#  required for displaying the results
 class matchEntry:
     def __init__(self, word, direction, index, locations):
         self.word = word
@@ -46,6 +43,14 @@ class matchEntry:
         self.index = index
         self.locations = locations
 
+# This converts from a list of found words, back to the indexes in the original grid
+# Matches = [
+#  0: Name of view the match was found in, (if it ends with a -, it counds it as a backwards match in the original view)
+#  1: Line in the view that the match was found,
+#  2: First letter of the match
+#  3: Last letter of the match
+# ]
+# Returns a list of matchEntry classes for displaying
 def getIndexes(gridViews, matches):
     indexes=[]
     gridWidth = len(gridViews["h"][0])
@@ -96,6 +101,8 @@ def getIndexes(gridViews, matches):
             print("%s: %s: %s"%(name, match[4], "Can't calculate"))
     return sorted(indexes, key=lambda x: (-len(x.word), x.word))
 
+# Takes a dictionary of views of the grid, and matches each line against the automaton
+# Returns a list of matchEntry objects for display
 def findWordsFromAutomaton(gridViews, A):
     matches = []
     for dir, gridView in gridViews.items():
@@ -104,11 +111,15 @@ def findWordsFromAutomaton(gridViews, A):
                 matches.append((dir, lineIndex, endIndex - len(found) + 1, endIndex + 1, found))
     return getIndexes(gridViews, matches)
 
+# Primary entry point into this file.  Returns a list of matchEntry objects containing all matches
 def getGridMatches(grid, method="wordlist"):
     gridViews = genViews(grid)
     if method == "wordlist":
+        Aut = automaton.getAutomaton(minLength=3)
         return findWordsFromAutomaton(gridViews, Aut)
 
+
+# Can call this on the command line to test things without using the GUI, this is the entry point if you do that
 if __name__ == "__main__":
     arrayIn = ["hello1",
                "eeeee1",
@@ -116,13 +127,15 @@ if __name__ == "__main__":
                'lllll1',
                'ooooo1']
 
-    arrays = genArrays(arrayIn)
+    arrays = genViews(arrayIn)
 
-
+    #import code
     #code.interact(local=locals())
 
+    import time
     ret = []
     start = time.time()
+    Aut = automaton.getAutomaton(minLength=3)
     for _ in range(100):
         findWordsFromAutomaton(arrays, Aut)
     print("ahocorasick: %.8f seconds"%(time.time() - start))
