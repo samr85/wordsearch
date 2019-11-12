@@ -40,6 +40,23 @@ class matchEntry:
     def __init__(self, word, direction, index, locations):
         self.word = word
         self.direction = direction
+# If unicode looks weird on some browsers, we should replace with images.
+        if self.direction == 'h':
+            self.direction = '→'
+        if self.direction == 'h-':
+            self.direction = '←'
+        if self.direction == 'v':
+            self.direction = '↓'
+        if self.direction == 'v-':
+            self.direction = '↑'
+        if self.direction == 'dr':
+            self.direction = '↘'
+        if self.direction == 'dr-':
+            self.direction = '↖'
+        if self.direction == 'dl':
+            self.direction = '↙'
+        if self.direction == 'dl-':
+            self.direction = '↗'
         self.index = index
         self.locations = locations
 
