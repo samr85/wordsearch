@@ -10,7 +10,11 @@ def index(request):
 def detail(request, id):
     return HttpResponse("id: %s"%(id))
 
-def grid(request):
+def gridInput(request):
+    context = {}
+    return render(request, "solverGui/input.html", context)
+
+def gridDisplay(request):
     arrayIn =['despoticskeetshoot',
             'teacupozglommedorr',
             'ieginbracingsailrs',

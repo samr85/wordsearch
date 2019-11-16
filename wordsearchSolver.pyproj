@@ -35,6 +35,12 @@
     <Compile Include="solverGui\views.py" />
     <Compile Include="solverGui\__init__.py" />
     <Compile Include="solver\automaton.py" />
+    <Compile Include="solver\grids.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="solver\matches.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="solver\searcher.py" />
     <Compile Include="solver\__init__.py">
       <SubType>Code</SubType>
@@ -48,6 +54,8 @@
     <Content Include="solverGui\static\solverGui\grid.css" />
     <Content Include="solverGui\templates\solverGui\display.html" />
     <Content Include="solverGui\static\solverGui\grid.js" />
+    <Content Include="solverGui\templates\solverGui\base.html" />
+    <Content Include="solverGui\templates\solverGui\input.html" />
     <Content Include="solver\words.txt" />
   </ItemGroup>
   <ItemGroup>
