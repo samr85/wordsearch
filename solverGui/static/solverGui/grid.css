@@ -1,9 +1,19 @@
+html, body {
+    height:100%;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 8px
+}
+body {
+    /* Not sure I understand why this is needed... However it causes the scrolling to actually work */
+    display: flex;
+}
 
 .holder {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    height: 100%;
+    width: 100%;
 }
 
 /*table.grid, .grid tr, .grid td {*/
@@ -44,4 +54,3 @@ table.grid {
     color: red;
     background-color: lightgreen !important;
 }
-

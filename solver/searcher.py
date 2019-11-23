@@ -1,9 +1,25 @@
 from typing import List
+from django.http import QueryDict
 
 from .grids import gridShape, allGrids
 from .searchers import allSearches
 from .matches import matchLine, matchEntry
+from .exceptions import badInput
 
+def parseGridSettings(grid, responseDict: QueryDict) -> List[matchEntry]:
+    thisGrid = allGrids["gridRectangle"]()
+    if "gridType" in responseDict:
+        try:
+            thisGrid = allGrids[responseDict["gridType"]]()
+        except ValueError:
+            raise badInput("Invalid gridType: %s"%(responseDict["gridType"]))
+    thisGrid.generateLineViews(grid)
+
+    wordMatches = []
+    for searchMethod in allSearches:
+        wordMatches.extend(searchMethod.findMatches(thisGrid, responseDict))
+
+    return wordMatches
 
 # Primary entry point into this file.  Returns a list of matchEntry objects containing all matches
 # TODO: Needs lots of error checking!!

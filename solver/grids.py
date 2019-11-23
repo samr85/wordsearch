@@ -7,8 +7,8 @@ class gridShape:
     def __init__(self, requestViews=None):
         self.name = self.__class__.__name__
         self.requestViews = requestViews
-        self.views: Dict[str, List] = {}
-        self.allViews: Dict[str, List] = {}
+        self.views: Dict[str, List[str]] = {}
+        self.allViews: Dict[str, List[str]] = {}
 
     # This produces a list of rotations of the grid, called views
     def generateLineViews(self, grid):

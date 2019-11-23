@@ -34,7 +34,9 @@
     </Compile>
     <Compile Include="solverGui\views.py" />
     <Compile Include="solverGui\__init__.py" />
-    <Compile Include="solver\automaton.py" />
+    <Compile Include="solver\exceptions.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="solver\grids.py">
       <SubType>Code</SubType>
     </Compile>
@@ -42,6 +44,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="solver\searcher.py" />
+    <Compile Include="solver\searchers\automaton.py" />
+    <Compile Include="solver\searchers\automatonSearcher.py" />
+    <Compile Include="solver\searchers\searchMethods.py" />
+    <Compile Include="solver\searchers\__init__.py" />
     <Compile Include="solver\__init__.py">
       <SubType>Code</SubType>
     </Compile>
@@ -52,11 +58,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="solverGui\static\solverGui\grid.css" />
+    <Content Include="solverGui\static\solverGui\input.css" />
     <Content Include="solverGui\templates\solverGui\display.html" />
     <Content Include="solverGui\static\solverGui\grid.js" />
     <Content Include="solverGui\templates\solverGui\base.html" />
     <Content Include="solverGui\templates\solverGui\input.html" />
-    <Content Include="solver\words.txt" />
+    <Content Include="solver\searchers\wordLists\words.txt" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="solver" />
@@ -66,6 +73,8 @@
     <Folder Include="solverGui\static\solverGui\" />
     <Folder Include="solverGui\templates\" />
     <Folder Include="solverGui\templates\solverGui\" />
+    <Folder Include="solver\searchers\" />
+    <Folder Include="solver\searchers\wordLists\" />
     <Folder Include="webserver" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.Django.targets" />

@@ -1,4 +1,4 @@
-﻿{% extends "solverGui/base.html" %}
+{% extends "solverGui/base.html" %}
 {% load static %}
 
 {% block headers %}
@@ -31,7 +31,6 @@
         </table>
     </div>
 </div>
-
 <script type="text/javascript">
     var wordLocations = {
         {%for wordEntry in wordList%} {{wordEntry.index}}: [{%for loc in wordEntry.locations%}"{{loc}}", {%endfor%}],

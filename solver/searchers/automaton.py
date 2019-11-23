@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Dict, NamedTuple
 import os
 import re
 import pickle
@@ -54,9 +54,20 @@ def getAutomaton(wordListFile="words", minLength=0, maxLength=0):
     else:
         return makeAutomaton(wordListFile, minLength)
 
-def findWordLists() -> List[str]:
+class FileEntry(NamedTuple):
+    name: str
+    wordCount: int
+
+def findWordLists() -> Dict[str, FileEntry]:
     allFiles: List[str] = os.listdir(wordListsDir)
-    return [x[:-4] for x in allFiles if x.endswith(".txt")]
+    retList = {}
+    for file in allFiles:
+        if file.endswith(".txt"):
+            with open(os.path.join(wordListsDir, file), "rb") as f:
+                entryLen = len(f.readlines())
+            retList[file[:-4]] = FileEntry(file[:-4], entryLen)
+        
+    return retList
 
 
 wordLists = findWordLists()

@@ -1,0 +1,24 @@
+#inputForm {
+    height: 100%;
+}
+
+#inputMainDiv {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+#gridInput textarea {
+    height: 20em;
+    width: 20em;
+}
+
+#submitLine {
+    text-align: center;
+}
+
+.searchHeading {
+    display: inline-block;
+    font-weight: bold;
+    margin-top: 15px;
+}

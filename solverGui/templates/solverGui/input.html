@@ -1,4 +1,4 @@
-﻿{% extends "solverGui/base.html" %}
+{% extends "solverGui/base.html" %}
 {% load static %}
 
 {% block headers %}
@@ -6,5 +6,31 @@
 <link rel="stylesheet" href="{% static 'solverGui/input.css' %}" />
 {% endblock %}
 
-{% block contents %}
+{% block body %}
+<form method="post" action="/grid" id="inputForm">
+    <div id="inputMainDiv">
+        <div id="gridInput">
+            <span class="gridDescription">Input Grid:<br /></span>
+            <textarea name="gridContents"></textarea><br />
+            <input type="checkbox" name="basicRegexGrid"
+                   title="Treat . and [abcd] as any letter/any letter from that group"
+                   />Allow basic regex (not yet supported)<br />
+            <input type="checkbox" name="fullRegex"
+                   title="Comma separated grid of regex elements"
+                   />CSV regex grid (not yet supported)
+        </div>
+        <div id="searchTypes">
+            <span class="searchHeading">Search using dictionaries:</span><br />
+            {% for dict in dictionaries %}
+            <input type="checkbox" name="dict_{{dict.name}}">{{dict.name}} ({{dict.wordCount}} words)<br />
+            {% endfor %}
+            <span class="searchHeading">Search using a regex</span><br />
+            <input type="checkbox" name="useRegexSearch">
+            <input type="text" name="regexSearchText" />
+        </div>
+    </div>
+    <div id="submitLine">
+        <input type="submit" />
+    </div>
+</form>
 {% endblock %}
