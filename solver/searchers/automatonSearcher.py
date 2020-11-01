@@ -7,17 +7,19 @@ from ..grids import gridShape
 from ..exceptions import badInput
 
 class automatonSearch(searchMethod):
-    # parameters = [searchParameter(wlName, "any", wlParameter)]
+    def __init__(self, wordList: automaton.FileEntry):
+        super().__init__("dict_" + wordList.name)
+        self.wordList = wordList
 
-    def findWordListMatches(self, grid, params: QueryDict, wordList: str) -> List[matchEntry]:
-        print("Searching wordlist %s"%(wordList,))
+    def findMatches(self, grid: gridShape, params: QueryDict) -> List[matchEntry]:
+        print("Searching wordlist %s"%(self.wordList.name,))
         try:
-            minLen = int(params.pop("dict_" + wordList + "_min", 0))
-            maxLen = int(params.pop("dict_" + wordList + "_max", 0))
+            minLen = int(params.pop(self.requestName + "_min", 0))
+            maxLen = int(params.pop(self.requestName + "_max", 0))
         except ValueError:
-            raise badInput("min/max value for word list %s wasn't understood"%(wordList, ))
+            raise badInput("min/max value for word list %s wasn't understood"%(self.wordList.name, ))
 
-        A = automaton.getAutomaton(wordList, minLen, maxLen)
+        A = self.wordList.getAutomaton(minLen, maxLen)
         matches: List[matchLine] = []
         for gridDir, gridView in grid.views.items():
             for lineIndex, line in enumerate(gridView):
@@ -26,13 +28,5 @@ class automatonSearch(searchMethod):
                                              found))
         return grid.lineToEntry(matches)
 
-    def findMatches(self, grid: gridShape, params: QueryDict) -> List[matchEntry]:
-        allMatches: List[matchEntry] = []
-        for wordList in automaton.wordLists:
-            if "dict_" + wordList in params:
-                del params["dict_" + wordList]
-                allMatches.extend(self.findWordListMatches(grid, params, wordList))
-        return allMatches
-
-
-allSearches.append(automatonSearch())
+for wordList in automaton.wordLists.values():
+    allSearches.append(automatonSearch(wordList))

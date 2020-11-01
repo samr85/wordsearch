@@ -15,6 +15,8 @@ def gridInput(request, errorClass: solver.badInput = None):
     context = {"dictionaries": solver.wordLists.values()}
     if errorClass:
         context["error"] = errorClass.reason
+    else:
+        context["error"] = None
     return render(request, "solverGui/input.html", context)
 
 

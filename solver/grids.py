@@ -54,7 +54,6 @@ class gridShape:
         gridWidth = len(self.allViews["h"][0])
         gridHeight = len(self.allViews["v"][0])
         for index, match in enumerate(matches):
-            rev = False
             name = match.viewName
             if name[-1] == "-":
                 # reverse match
@@ -62,7 +61,6 @@ class gridShape:
                 newEnd = lineLen - match.start
                 match.start = lineLen - match.end
                 match.end = newEnd
-                rev = True
 
             if name.startswith("h"):
                 locations = ["%d_%d" % (v, match.lineIndex) for v in range(match.start, match.end)]

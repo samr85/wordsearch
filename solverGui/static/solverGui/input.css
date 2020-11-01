@@ -17,6 +17,11 @@
     text-align: center;
 }
 
+#error {
+    color: red;
+    text-align: center;
+}
+
 .searchHeading {
     display: inline-block;
     font-weight: bold;

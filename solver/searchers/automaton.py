@@ -15,14 +15,14 @@ loadedAutomaton = {}
 def getCache(filename, minLength):
     return os.path.join(cacheDir, filename + ".%d"%(minLength,) + fileExt)
 
-def readWordList(wordListFile):
+def readWordList(wordListFile: str) -> List[str]:
     with open(os.path.join(wordListsDir, wordListFile) + ".txt") as f:
         wordListOrig = list(f)
     # Remove any non a-z character, and make lowercase
     wordList = [re.sub('[^a-zA-Z]', '', x).lower() for x in wordListOrig]
-    return set(wordList)  # dedupe
+    return list(set(wordList))  # dedupe
 
-def makeAutomaton(wordListFile, minLength):
+def makeAutomaton(wordListFile: str, minLength: int) -> ahocorasick.Automaton:
     wordList = readWordList(wordListFile)
     wordList = [x for x in wordList if len(x) >= minLength]  # filter on length
     print("Found %d entries"%(len(wordList)))
@@ -42,7 +42,7 @@ def makeAutomaton(wordListFile, minLength):
 
 # Loads the cached version of the automaton for this file and length,
 #  or creates a new one if it's not yet cached
-def getAutomaton(wordListFile="words", minLength=0, maxLength=0):
+def getAutomaton(wordListFile: str="words", minLength: int=0, maxLength: int=0) -> ahocorasick.Automaton:
     if not minLength:
         minLength = 3
     filename = getCache(wordListFile, minLength)
@@ -58,6 +58,9 @@ class FileEntry(NamedTuple):
     name: str
     wordCount: int
 
+    def getAutomaton(self, minLength: int, maxLength: int) -> ahocorasick.Automaton:
+        return getAutomaton(self.name, minLength, maxLength)
+
 def findWordLists() -> Dict[str, FileEntry]:
     allFiles: List[str] = os.listdir(wordListsDir)
     retList = {}
@@ -72,4 +75,4 @@ def findWordLists() -> Dict[str, FileEntry]:
 
 wordLists = findWordLists()
 
-__all__ = ["getAutomaton", "wordLists"]
+__all__ = ["wordLists"]

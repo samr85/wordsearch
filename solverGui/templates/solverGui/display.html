@@ -11,7 +11,7 @@
     <div class="grid">
         <table class="grid" id="grid">
             {% for row in grid %}
-                <tr>{%for entry in row%}<td id="grid{{forloop.counter0}}_{{forloop.parentloop.counter0}}" data-index="{{forloop.counter0}}_{{forloop.parentloop.counter0}}">{{entry}}</td>{%endfor%}</tr>
+                <tr>{% for entry in row %}<td id="grid{{forloop.counter0}}_{{forloop.parentloop.counter0}}" data-index="{{forloop.counter0}}_{{forloop.parentloop.counter0}}">{{entry}}</td>{% endfor %}</tr>
             {% endfor %}
         </table>
     </div>
@@ -19,7 +19,7 @@
     <div class="wordList">
         <table id="wordList">
             <tr><th>Word</th><th>direction</th><th>mark/normal/ignore</th></tr>
-            {%for wordEntry in wordList%}
+            {% for wordEntry in wordList %}
                 <tr data-index="{{wordEntry.index}}">  
                     <td>{{wordEntry.word}}</td>
                     <td>{{wordEntry.direction}}</td>
@@ -27,18 +27,18 @@
                         <input type="radio" data-index="{{wordEntry.index}}" value="normal" checked="checked" />
                         <input type="radio" data-index="{{wordEntry.index}}" value="ignore" /></td>
                 </tr>
-            {%endfor%}
+            {% endfor %}
         </table>
     </div>
 </div>
 <script type="text/javascript">
     var wordLocations = {
-        {%for wordEntry in wordList%} {{wordEntry.index}}: [{%for loc in wordEntry.locations%}"{{loc}}", {%endfor%}],
-        {%endfor%}
+        {% for wordEntry in wordList %} {{wordEntry.index}}: [{% for loc in wordEntry.locations %}"{{loc}}", {% endfor %}],
+        {% endfor %}
     }
     var gridHl = {
-        {%for row in grid%}{%for entry in row%}"{{forloop.counter0}}_{{forloop.parentloop.counter0}}":[[], []],
-        {%endfor%}{%endfor%}
+        {% for row in grid %}{% for entry in row %}"{{forloop.counter0}}_{{forloop.parentloop.counter0}}":[[], []],
+        {% endfor %}{% endfor %}
     }
 </script>
 {% endblock %}

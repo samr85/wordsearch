@@ -1,0 +1,4 @@
+defaultlist
+django
+pyahocorasick
+regex

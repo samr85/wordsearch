@@ -8,6 +8,11 @@
 
 {% block body %}
 <form method="post" action="/grid" id="inputForm">
+    {% if error %}
+    <div id="error">
+        Error: {{error}}
+    </div>
+    {% endif %}
     <div id="inputMainDiv">
         <div id="gridInput">
             <span class="gridDescription">Input Grid:<br /></span>
@@ -26,7 +31,10 @@
             {% endfor %}
             <span class="searchHeading">Search using a regex</span><br />
             <input type="checkbox" name="useRegexSearch">
-            <input type="text" name="regexSearchText" />
+            <input type="text" name="regexSearchText" /><br />
+            <span class="searchHeading">Filter matches using regex:</span><br />
+            <input type="checkbox" name="useRegexFilter">
+            <input type="text" name="regexFilterText" /><br />
         </div>
     </div>
     <div id="submitLine">
