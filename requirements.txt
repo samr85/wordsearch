@@ -1,4 +1,5 @@
 defaultlist
-django
+jinja2
 pyahocorasick
 regex
+tornado

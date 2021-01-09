@@ -1,13 +1,12 @@
-{% extends "solverGui/base.html" %}
-{% load static %}
+{% extends "wordsearchSolver/base.html.j2" %}
 
 {% block headers %}
-<script type="text/javascript" src="{% static 'solverGui/input.js' %}"></script>
-<link rel="stylesheet" href="{% static 'solverGui/input.css' %}" />
+<script type="text/javascript" src="static/wordsearchSolver/input.js"></script>
+<link rel="stylesheet" href="static/wordsearchSolver/input.css" />
 {% endblock %}
 
 {% block body %}
-<form method="post" action="/grid" id="inputForm">
+<form method="post" action="#" id="inputForm">
     {% if error %}
     <div id="error">
         Error: {{error}}
