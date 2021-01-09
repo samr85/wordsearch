@@ -7,3 +7,9 @@ requests = [
     (r"/wordsearchSolver", wordsearchSolver),
     (r"/static/wordsearchSolver/(.*)", StaticFileHandler, {'path': os.path.join(os.path.dirname(__file__), "static/wordsearchSolver")})
 ]
+
+indexItems = [
+    """<h1>Word Search Solver</h1>
+    <a href="/wordsearchSolver">input gui</a><br />
+    """
+]
